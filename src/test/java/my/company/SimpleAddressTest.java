@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 
@@ -17,6 +16,8 @@ public class SimpleAddressTest {
 
     @Before
     public void setUp() throws Exception {
+        System.out.println("Starting simple test\n" +
+                "-------------------------");
     }
 
 
@@ -73,5 +74,6 @@ public class SimpleAddressTest {
 
     @After
     public void tearDown() throws Exception {
+        System.out.println("Test Ended");
     }
 }

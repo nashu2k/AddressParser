@@ -77,7 +77,7 @@ public class AddressParser {
         if (containsStringDelimiter(address, " no "))
             return splitAfterString(address, "no");
         else if (containsStringDelimiter(address, " nr "))
-            return splitAfterString(address, " nr ");
+            return splitAfterString(address, "nr");
         else if (Character.isDigit(address.charAt(0)))
             return splitWithNumberFirst(address);
         else
@@ -85,7 +85,7 @@ public class AddressParser {
     }
 
     private String[] splitAfterString(String address, String exp) {
-        return normalizeAddress(address).split("\\s+(?=" + exp + ")");
+        return normalizeAddress(address).split("\\s+(?i)(?=" + exp + ")");
     }
 
     private String[] splitWithNumberFirst(String address) {
