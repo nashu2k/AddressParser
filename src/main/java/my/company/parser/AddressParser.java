@@ -7,7 +7,8 @@ public class AddressParser {
         if (address == null) {
             throw new NullPointerException("String address must not be null");
         }
-        if (!containsBasicDelimiter(address) || !containsNumber(address) || containsOnlyNumbers(address) || address.length() < 3)
+        // TODO: check if other validations are needed
+        if (!containsBasicDelimiter(address) || !containsNumber(address) || containsOnlyNumbers(address) || address.length() < 4)
             throw new IllegalArgumentException("Invalid given address");
         return parseAddressWithLocalization(address, "de");
     }
@@ -55,6 +56,10 @@ public class AddressParser {
         return address.matches(".*\\d+.*");
     }
 
+    /**
+     * @param address - one line string for address
+     * @return if address contains delimiter
+     */
     private boolean containsBasicDelimiter(String address) {
         // TODO check if other delimiters are used
         return address.contains(" ") || address.contains(",");
@@ -64,6 +69,11 @@ public class AddressParser {
         return !address.startsWith(delim) && address.matches("(?i:.*" + delim + ".*)");
     }
 
+
+    /**
+     * @param address - one line string for address
+     * @return if address contains only numbers
+     */
     private boolean containsOnlyNumbers(String address) {
         return address.replaceAll("\\s+", "").matches("^[0-9]*$");
     }
@@ -95,7 +105,7 @@ public class AddressParser {
         return new String[]{streetName, houseNo};
     }
 
-    private String[] splitWithNumberLast(String address){
+    private String[] splitWithNumberLast(String address) {
         return normalizeAddress(address).split("\\s+(?=\\d)");
     }
 }
