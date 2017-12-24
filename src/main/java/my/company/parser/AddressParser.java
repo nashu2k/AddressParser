@@ -21,7 +21,7 @@ public class AddressParser {
             throw new NullPointerException("Localization option must not be null");
         }
         switch (geoloc) {
-            // TODO: find a better implementation of various inputs / country standards
+            // TODO: need new method implemented for various inputs / country standards
             case ("de"):
                 return splitAddress(address);
             case ("fr"):
@@ -92,7 +92,7 @@ public class AddressParser {
             return splitWithNumberFirst(address);
         else
             return splitWithNumberLast(address);
-        //FIXME: are these all the scenarios? 
+        //FIXME: are these all the scenarios?
     }
 
     private String[] splitAfterString(String address, String exp) {

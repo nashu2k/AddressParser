@@ -1,6 +1,6 @@
 **Simple application for Address parsing**
 
-The goal of the application is to read one line addresses from a file and write the output in simple {"street name", "house number"} format.
+The goal of the application is to read one line addresses from a file and write the output in simple `{"street name", "house number"}` format.
 
 From project root run `mvn package` to build the jar.
 
