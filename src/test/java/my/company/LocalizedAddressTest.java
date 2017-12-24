@@ -14,7 +14,7 @@ public class LocalizedAddressTest {
     AddressParser parser = new AddressParser();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         System.out.println("Starting localization test\n" +
                 "-------------------------");
     }
@@ -30,6 +30,10 @@ public class LocalizedAddressTest {
         try {
             parser.parseAddressWithLocalization("some addres", null);
             fail("Should return NPE for address and null geoloc");
+        } catch (NullPointerException e) {}
+        try {
+            parser.parseAddressWithLocalization(null, "us");
+            fail("Should return NPE for null address and valid geoloc");
         } catch (NullPointerException e) {}
     }
 
@@ -63,9 +67,14 @@ public class LocalizedAddressTest {
                 new String[]{"No New Addresses", "12B"});
     }
 
-    @After
+    @Test
+    public void testNrDelimiter(){
+        assertArrayEquals(parser.parseAddressWithLocalization("Aleea Primaverii nr 150","es"),
+                new String[]{"Aleea Primaverii", "nr 150"});
+    }
 
-    public void tearDown() throws Exception {
+    @After
+    public void tearDown() {
         System.out.println("Test Ended");
     }
 }
